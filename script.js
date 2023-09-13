@@ -24,8 +24,7 @@ const resetGame = () => {
   rolls.textContent = numberOfRolls;
   diceImage.src = "./images/dice6.png";
   diceImage.style.width = "50%";
-  rollDiceButton.textContent = "Roll";
-  rollDiceButton.addEventListener("click", rollTheDice);
+  swapRollButton("Roll");
 };
 
 const rollTheDice = () => {
@@ -37,15 +36,13 @@ const rollTheDice = () => {
   diceImage.style.width = "50%";
   // check if a 1 has been rolled
   if (diceRoll === 1) {
-    rollDiceButton.textContent = "Play again";
-    rollDiceButton.addEventListener("click", resetGame);
+    swapRollButton("Play again");
   } else {
     score += diceRoll;
     displayScore.textContent = score;
     if (score > 20) {
       checkIfRecordSet();
-      rollDiceButton.textContent = "Play again";
-      rollDiceButton.addEventListener("click", resetGame);
+      swapRollButton("Play again");
     }
   }
 };
@@ -54,6 +51,17 @@ const checkIfRecordSet = () => {
   if (numberOfRolls < minimumNumberOfRolls) {
     minimumNumberOfRolls = numberOfRolls;
     minRolls.textContent = minimumNumberOfRolls;
+  }
+};
+
+const swapRollButton = (buttonFunctionality) => {
+  rollDiceButton.textContent = buttonFunctionality;
+  if ((buttonFunctionality = "Roll")) {
+    rollDiceButton.removeEventListener("click", resetGame);
+    rollDiceButton.addEventListener("click", rollTheDice);
+  } else if ((buttonFunctionality = "Play again")) {
+    rollDiceButton.removeEventListener("click", rollTheDice);
+    rollDiceButton.addEventListener("click", resetGame);
   }
 };
 
