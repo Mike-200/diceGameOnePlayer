@@ -24,29 +24,34 @@ const resetGame = () => {
   displayScore.textContent = score;
   numberOfRolls = 0;
   rolls.textContent = numberOfRolls;
-  diceImage.src = "./images/dice6.png";
-  diceImage.style.width = "50%";
+  diceImage.src = "./images/dice3d.png";
+  //   diceImage.style.width = "50%";
   swapRollButton("Roll");
 };
 
 const rollTheDice = () => {
-  numberOfRolls++;
-  rolls.textContent = numberOfRolls;
-  // generate a random number 1 to 6
-  const diceRoll = Math.ceil(Math.random() * 6);
-  diceImage.src = "./images/dice" + diceRoll + ".png";
-  diceImage.style.width = "50%";
-  // check if a 1 has been rolled
-  if (diceRoll === 1) {
-    swapRollButton("Play again");
-  } else {
-    score += diceRoll;
-    displayScore.textContent = score;
-    if (score > 20) {
-      checkIfRecordSet();
+  setTimeout(() => {
+    diceImage.style.animation = "none";
+    numberOfRolls++;
+    rolls.textContent = numberOfRolls;
+    // generate a random number 1 to 6
+    const diceRoll = Math.ceil(Math.random() * 6);
+    diceImage.src = "./images/dice" + diceRoll + ".png";
+    //   diceImage.style.width = "50%";
+    // check if a 1 has been rolled
+    if (diceRoll === 1) {
       swapRollButton("Play again");
+    } else {
+      score += diceRoll;
+      displayScore.textContent = score;
+      if (score > 20) {
+        checkIfRecordSet();
+        swapRollButton("Play again");
+      }
     }
-  }
+  }, Math.round(Math.random() * 3000) + 1000);
+  diceImage.src = "./images/dice3d.png";
+  diceImage.style.animation = "jump-shaking 0.83s infinite";
 };
 
 const checkIfRecordSet = () => {
@@ -63,7 +68,7 @@ const swapRollButton = (buttonFunctionality) => {
     rollDiceButton.removeEventListener("click", resetGame);
     rollDiceButton.addEventListener("click", rollTheDice);
   } else if (buttonFunctionality === "Play again") {
-    rollTheDiceText.textContent="GAME OVER !"
+    rollTheDiceText.textContent = "GAME OVER !";
     rollDiceButton.removeEventListener("click", rollTheDice);
     rollDiceButton.addEventListener("click", resetGame);
   }
