@@ -34,6 +34,8 @@ article div {
 
 #backgroundImage {
   background-image: url(./images/background_dice.png);
+  background-size: 100px;
+  background-position: center;
 }
 
 @media (max-width: 450px) {
