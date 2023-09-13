@@ -4,6 +4,8 @@ const displayScore = document.getElementById("displayScore");
 const rollDiceButton = document.getElementById("rollDiceButton");
 const rolls = document.getElementById("rolls");
 const minRolls = document.getElementById("minRolls");
+const rollTheDiceButton = document.getElementById("rollTheDiceButton");
+const rollTheDiceText = document.getElementById("rollTheDiceText");
 
 let score = 0;
 let numberOfRolls = 0;
@@ -56,10 +58,12 @@ const checkIfRecordSet = () => {
 
 const swapRollButton = (buttonFunctionality) => {
   rollDiceButton.textContent = buttonFunctionality;
-  if ((buttonFunctionality = "Roll")) {
+  if (buttonFunctionality === "Roll") {
+    rollTheDiceText.textContent = "Roll the dice";
     rollDiceButton.removeEventListener("click", resetGame);
     rollDiceButton.addEventListener("click", rollTheDice);
-  } else if ((buttonFunctionality = "Play again")) {
+  } else if (buttonFunctionality === "Play again") {
+    rollTheDiceText.textContent="GAME OVER !"
     rollDiceButton.removeEventListener("click", rollTheDice);
     rollDiceButton.addEventListener("click", resetGame);
   }
