@@ -2,9 +2,13 @@
 const diceImage = document.getElementById("diceImage");
 const displayScore = document.getElementById("displayScore");
 const rollDiceButton = document.getElementById("rollDiceButton");
+const rolls = document.getElementById("rolls");
+const minRolls = document.getElementById("minRolls");
 
 let score = 0;
-let diceRoll = 0;
+let numberOfRolls = 0;
+let minimumNumberOfRolls = 10;
+// let diceRoll = 0;
 
 // dice roll function
 // vibrate the dice for a random number of seconds
@@ -16,43 +20,46 @@ let diceRoll = 0;
 const resetGame = () => {
   score = 0;
   displayScore.textContent = score;
-  diceImage.src = "./images/dice3d.png";
-  diceImage.style.width = "70%";
+  numberOfRolls = 0;
+  rolls.textContent = numberOfRolls;
+  diceImage.src = "./images/dice6.png";
+  diceImage.style.width = "50%";
+  rollDiceButton.textContent = "Roll";
+  rollDiceButton.addEventListener("click", rollTheDice);
 };
 
 const rollTheDice = () => {
+  numberOfRolls++;
+  rolls.textContent = numberOfRolls;
   // generate a random number 1 to 6
-  diceRoll = Math.ceil(Math.random() * 6);
+  const diceRoll = Math.ceil(Math.random() * 6);
   diceImage.src = "./images/dice" + diceRoll + ".png";
   diceImage.style.width = "50%";
   // check if a 1 has been rolled
   if (diceRoll === 1) {
-    console.log("You Lose");
-    resetGame();
+    rollDiceButton.textContent = "Play again";
+    rollDiceButton.addEventListener("click", resetGame);
   } else {
     score += diceRoll;
     displayScore.textContent = score;
-    if (!checkForWinner()) {
-      console.log("Roll again");
+    if (score > 20) {
+      checkIfRecordSet();
+      rollDiceButton.textContent = "Play again";
+      rollDiceButton.addEventListener("click", resetGame);
     }
   }
 };
 
-rollDiceButton.addEventListener("click", rollTheDice);
+const checkIfRecordSet = () => {
+  if (numberOfRolls < minimumNumberOfRolls) {
+    minimumNumberOfRolls = numberOfRolls;
+    minRolls.textContent = minimumNumberOfRolls;
+  }
+};
 
 // check for a winner function
 // if score > 20 display Your Win
 // if score <= 20 continue
-
-const checkForWinner = () => {
-  if (score > 20) {
-    console.log("You Win");
-    resetGame();
-    return true;
-  } else {
-    return false;
-  }
-};
 
 // reset game function
 // reset score to zero

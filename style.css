@@ -1,3 +1,11 @@
-#diceImage {
-  width: 70%;
+#interface div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* #diceImage {
+  width: 30vw;
+  
+} */
+

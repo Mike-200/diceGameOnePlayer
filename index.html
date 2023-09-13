@@ -9,14 +9,20 @@
   </head>
   <body>
     <main>
-      <article>
-        <figure>
-          <img id="diceImage" src="./images/dice3d.png" alt="" />
-        </figure>
-        <div id="interface">
-            <p>Score: <span id="displayScore">0</span></p>
-            <h2>Roll the dice</h2>
-            <button id="rollDiceButton">Roll</button>
+      <article id="interface">
+        <div>
+          <h2>Instructions</h2>
+          <p>Roll the dice as few times as you can to reach 20 points</p>
+          <p>If you roll a 1, you will have to start all over again</p>
+        </div>
+        <div>
+          <img id="diceImage" src="./images/dice6.png" alt="" />
+          <p>Number of Rolls this game: <span id="rolls">0</span></p>
+          <h2>Score: <span id="displayScore">0</span></h2>
+          <p>Minimum number of rolls to beat: <span id="minRolls">10</span></p>
+
+          <h2>Roll the dice</h2>
+          <button id="rollDiceButton">Roll</button>
         </div>
       </article>
     </main>
