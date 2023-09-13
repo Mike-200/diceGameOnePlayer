@@ -1,15 +1,48 @@
-#interface div {
+body{
+  min-width: 250px;
+}
+
+article div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  line-height: 0.5;
+  font-family: cursive;
+  text-align: center;
+}
+
+#instructions {
+  background-color: rgb(214, 247, 216);
+  border-radius: 25px;
 }
 
 #diceImage {
   width: 50vw;
+  padding: 20px;
+  /* animation: jump-shaking 0.83s infinite; */
 }
 
-#diceImage {
-  /* animation: jump-shaking 0.83s infinite; */
+#interface {
+  background-color: rgb(214, 238, 238);
+  border-radius: 25px;
+  line-height: 0.5;
+}
+
+#rollDiceButton {
+  margin-bottom: 20px;
+  scale: 2;
+}
+
+@media (max-width: 450px) {
+  #instructions {
+    line-height: 1.25;
+  }
+  #diceImage {
+    width: 225px;
+  }
+  #interface {
+    line-height: 1.25;
+  }
 }
 
 @keyframes jump-shaking {

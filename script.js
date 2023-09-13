@@ -7,9 +7,11 @@ const minRolls = document.getElementById("minRolls");
 const rollTheDiceButton = document.getElementById("rollTheDiceButton");
 const rollTheDiceText = document.getElementById("rollTheDiceText");
 
+const pointsToReach = 10;
 let score = 0;
 let numberOfRolls = 0;
 let minimumNumberOfRolls = 10;
+
 // let diceRoll = 0;
 
 // dice roll function
@@ -44,9 +46,8 @@ const rollTheDice = () => {
     } else {
       score += diceRoll;
       displayScore.textContent = score;
-      if (score > 20) {
+      if (score > pointsToReach) {
         checkIfRecordSet();
-        swapRollButton("Play again");
       }
     }
   }, Math.round(Math.random() * 3000) + 1000);
@@ -56,8 +57,16 @@ const rollTheDice = () => {
 
 const checkIfRecordSet = () => {
   if (numberOfRolls < minimumNumberOfRolls) {
+    // console.log("here");
+    rollTheDiceText.textContent = "NEW RECORD SET - WELL DONE !";
     minimumNumberOfRolls = numberOfRolls;
     minRolls.textContent = minimumNumberOfRolls;
+    setTimeout(() => {
+      swapRollButton("Play again");
+    }, 3000);
+    // console.log("time out");
+  } else {
+    swapRollButton("Play again");
   }
 };
 
